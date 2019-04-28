@@ -1,0 +1,214 @@
+body {
+    background-color: rgb(23,23,23);
+    color: rgb(230, 230, 230);
+    font-family: Proxima-Nova, "Proxima Nova", HelveticaNeue-Light, "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+@media (min-width: 768px) {
+    .container {
+        width: 750px;
+    }
+}
+@media (min-width: 992px) {
+    .container {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px;
+    }
+}
+
+.back {
+    color: rgb(255,255,255);
+}
+
+h1 {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    font-size: 46.8px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 49px;
+    margin-block-end: 15px;
+    margin-bottom: 15px;
+    text-align: center;
+    word-break: break-word;
+}
+
+.summary {
+    box-sizing: border-box;
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 30.8px;
+    margin-block-end: 12px;
+    margin-bottom: 12px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.author {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22.4px;
+    padding-bottom: 34px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.author img {
+    background-color: rgb(0,0,0);
+    border-radius: 50%;
+    border-image-repeat: stretch;
+    height: 24px;
+    width: 24px;
+    margin-top: -2px;
+    margin-right: 5px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.image-content {
+    display: inline-block;
+    background-size: cover;
+    width: 35%;
+    text-align: center;
+    vertical-align: top;
+    height: 353px;
+    margin-right: 3%
+}
+
+.description-content {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;
+}
+
+#menu-description {
+    color: rgb(103,103,103);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 19.6px;
+    margin-block-end: 7px;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+}
+
+.description {
+    color: rgb(255,255,255);
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22.4px;
+}
+
+.project-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.project-card {
+    width: 30%;
+    height: 425px;
+    margin: 0 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.project-card .tooltip {
+    visibility: hidden;
+    width: 25%;
+    padding: 5px 0;
+    margin: 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    max-height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 1024px) {
+    .project-card {
+        width: 45%;
+    }
+
+    .tooltip {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .project-card {
+        width: 95%;
+    }
+
+    .tooltip {
+        width: 90%;
+    }
+}
+
+.project-card:hover .tooltip {
+    visibility: visible;
+}
+
+.project-card:hover .project-image {
+    opacity: 0.3;
+}
+
+.project-image {
+    background-color: rgb(39,39,39);
+    background-position: 50% 50%;
+    background-size: cover;
+    box-sizing: border-box;
+    cursor: auto;
+    display: block;
+    min-height: 340px;
+    position: relative;
+    transform: matrix(1,0,0,1,0,0);
+    transition-delay: 0s, 0s;
+    transition-duration: 0.2s, 0.2s;
+    transition-property: opacity, transform;
+    transition-timing-function: ease-out, ease-out;
+}
+
+.project-card a {
+    box-sizing: border-box;
+    display: block;
+    color: rgb(193, 159, 84);
+    cursor: auto;
+    font-size: 24.2;
+    font-weight: normal;
+    letter-spacing: -1px;
+    line-height: 33px;
+    text-decoration: none;
+    transition-delay: 0s;
+    transition-duration: 0.15s;
+    transition-property: color;
+    transition-timing-function: ease-in;
+    word-break: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.project-card .creator {
+    box-sizing: border-box;
+    color: rgb(103, 103, 103);
+    cursor: auto;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 22px;
+    text-decoration: none;
+}

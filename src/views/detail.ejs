@@ -1,0 +1,36 @@
+<html>
+    <link href="/css/detail.css" rel="stylesheet" type="text/css">
+<body>
+    <div class="container">
+        <a href="/projects" class="back">back</a>
+        <h1><%= project.name %></h1>
+        <p class="summary"><%= project.summary %></p>
+        <div class="author">
+            <img src=<%= user.image_url%> alt="avatar"> <%= user.screen_name %>
+        </div>
+        <div class="main-content">
+            <div class="image-content" style="background-image: url(<%= project.image_url %>)"></div>
+            <div class="description-content">
+                <h2 id="menu-description">Description</h2>
+                <div class="description">
+                    <%= project.description %>
+                </div>
+            </div>
+        </div>
+        <h2>Recommended Projects</h2>
+        <div class="project-container">
+            <% for (let x in relatedProjects) { %>
+                <div class="project-card project-<%= x %>">
+                    <span class="tooltip"><%= relatedProjects[x].summary %></span>
+                    <div class="project-image" style="background-image: url(<%= relatedProjects[x].image_url %>)"></div>
+                    <a href="/projects/<%= relatedProjects[x].id %>"><%= relatedProjects[x].name %></a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+
+    <script>
+    
+    </script>
+</body>
+</html>

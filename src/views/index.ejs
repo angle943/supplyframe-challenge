@@ -12,7 +12,7 @@
                 <div class="project-card project-<%= x %>">
                     <span class="tooltip"><%= projects[x].summary %></span>
                     <div class="project-image" style="background-image: url(<%= projects[x].image_url %>)"></div>
-                    <a><%= projects[x].name %></a>
+                    <a href="/projects/<%= projects[x].id %>"><%= projects[x].name %></a>
                     <img src=<%= projects[x].avatar %> alt=<%= projects[x].screen_name %> class="avatar"> <span class="author"><%= projects[x].screen_name %></span>
                 </div>
             <% } %>
