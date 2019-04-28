@@ -1,0 +1,80 @@
+<html>
+    <link href="/css/index.css" rel="stylesheet" type="text/css">
+<body>
+    <div class="container">
+        <div class="header">All Projects</div>
+        <div class="pagination">
+            <a href="#" id="prev-button" class="grey-gold-button"> Prev </a>
+            <a href="#" id="next-button" class="grey-gold-button"> Next </a>
+        </div>
+        <div class="project-container">
+            <% for (let x in projects) { %>
+                <div class="project-card project-<%= x %>">
+                    <div class="project-image" style="background-image: url(<%= projects[x].image_url %>)"></div>
+                    <a><%= projects[x].name %></a>
+                    <span class="author"><%= projects[x].screen_name %></span>
+                </div>
+            <% } %>
+        </div>
+        
+    </div>
+
+    <script>
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+        const projectCards = document.querySelectorAll('.project-card');
+        let page = 1;
+
+
+        const getQueryStringValue = (key) => {
+            return decodeURIComponent(window.location.search.replace(new RegExp("^(?:.*[&\\?]" + encodeURIComponent(key).replace(/[\.\+\*]/g, "\\$&") + "(?:\\=([^&]*))?)?.*$", "i"), "$1"));
+        }
+
+        const displayCards = (page) => {
+            for ( let i=0; i<projectCards.length; i++){
+                projectCards[i].style.display = "none";
+            }
+            for ( let i=0; i<9; i++) {
+                document.querySelector(`.project-${(page-1)*10+i}`).style.display = "block";
+            }
+        }
+
+        nextButton.addEventListener('click', (e) => {
+            const currentPage = getQueryStringValue('page');
+            if ( !currentPage ) {
+                page = 2;
+            } else {
+                page++;
+            }
+            history.pushState({}, '', `/projects?page=${page}`);
+        });
+
+        prevButton.addEventListener('click', (e) => {
+            const currentPage = getQueryStringValue('page');
+            if ( currentPage && currentPage > 1 ) {
+                page--;
+            }
+            history.pushState({}, '', `/projects?page=${page}`);
+        });
+
+        window.addEventListener('popstate', (e) => {
+            let currentPage = getQueryStringValue('page');
+            if ( !currentPage ){
+                currentPage = 1;
+            }
+            page = currentPage;
+            displayCards(page);
+        })
+        
+        const onInit = async () => {
+            let currentPage = getQueryStringValue('page');
+            if ( !currentPage ){
+                currentPage = 1;
+            }
+            page = currentPage;
+            displayCards(page);
+        }
+        onInit();
+    </script>
+</body>
+</html>

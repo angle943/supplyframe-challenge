@@ -19,7 +19,6 @@ const auth = async (req,res,next) => {
                     grant_type: 'authorization_code'
                 }
             });
-            console.log(resForToken);
             if ( resForToken.data["access_token"] ){
                 const authToken = resForToken.data.access_token;
                 res.setHeader('Authorization', `token ${authToken}`);
