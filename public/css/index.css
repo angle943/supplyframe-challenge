@@ -56,8 +56,51 @@ body {
     height: 425px;
     margin: 0 10px;
     margin-bottom: 10px;
-    border: 1px solid red;
     display: none;
+}
+
+
+
+.project-card .tooltip {
+    visibility: hidden;
+    width: 25%;
+    padding: 5px 0;
+    margin: 10px;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+    color: rgb(255, 255, 255);
+    max-height: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media only screen and (max-width: 1024px) {
+    .project-card {
+        width: 45%;
+    }
+
+    .tooltip {
+        width: 40%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .project-card {
+        width: 95%;
+    }
+
+    .tooltip {
+        width: 90%;
+    }
+}
+
+.project-card:hover .tooltip {
+    visibility: visible;
+}
+
+.project-card:hover .project-image {
+    opacity: 0.3;
 }
 
 .project-image {
@@ -104,6 +147,21 @@ body {
     font-weight: 300;
     line-height: 22px;
     text-decoration: none;
+}
+
+.project-card .avatar {
+    border-color: rgb(103, 103, 103);
+    border-image-width: 1;
+    border-style: none;
+    border-width: 0px;
+    border-radius: 50%;
+    border-image-slice: 100%;
+    border-image-repeat: stretch;
+    height: 24px;
+    width: 24px;
+    margin-right: 5px;
+    margin-top: -2px;
+    vertical-align: middle;
 }
 
 .pagination {

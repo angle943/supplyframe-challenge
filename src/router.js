@@ -28,34 +28,35 @@ router.get('/', (req,res) => {
 
 router.get('/projects', async (req,res) => {
     try {
-        const apiResponse = await axios.get(`${baseURL}/v1/projects`, {
-            params: {
-                api_key: process.env.HACKADAY_API_KEY
-            }
-        });
+        // const apiResponse = await axios.get(`${baseURL}/v1/projects`, {
+        //     params: {
+        //         api_key: process.env.HACKADAY_API_KEY
+        //     }
+        // });
 
         // implementing faker
-        // let apiResponse = { data: { projects: [] } };
-        // for ( let i=0; i<50; i++) {
-        //     const newData = {
-        //         name: faker.name.title(),
-        //         image_url: faker.image.image(),
-        //         screen_name: faker.name.firstName()
-        //     }
-        //     apiResponse.data.projects.push(newData);
-        // }
+        let apiResponse = { data: { projects: [] } };
+        for ( let i=0; i<50; i++) {
+            const newData = {
+                name: faker.name.title(),
+                image_url: faker.image.image(),
+                screen_name: faker.name.firstName(),
+                avatar: faker.image.avatar(),
+                summary: faker.lorem.sentence()
+            }
+            apiResponse.data.projects.push(newData);
+        }
 
         let projects = apiResponse.data.projects;
-        for ( let i=0; i<projects.length; i++) {
-            const userResponse = await axios.get(`${baseURL}/v1/users/${projects[i].owner_id}`, {
-                params: {
-                    api_key: process.env.HACKADAY_API_KEY
-                }
-            });
-            projects[i]["screen_name"] = userResponse.data.screen_name;
-            projects[i]["avatar"] = userResponse.data.image_url;
-        }
-        console.log(projects[0]);
+        // for ( let i=0; i<projects.length; i++) {
+        //     const userResponse = await axios.get(`${baseURL}/v1/users/${projects[i].owner_id}`, {
+        //         params: {
+        //             api_key: process.env.HACKADAY_API_KEY
+        //         }
+        //     });
+        //     projects[i]["screen_name"] = userResponse.data.screen_name;
+        //     projects[i]["avatar"] = userResponse.data.image_url;
+        // }
         return res.render('index', {projects} );
     } catch (e) {
         res.status(500).send({error: e.message});

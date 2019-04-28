@@ -10,9 +10,10 @@
         <div class="project-container">
             <% for (let x in projects) { %>
                 <div class="project-card project-<%= x %>">
+                    <span class="tooltip"><%= projects[x].summary %></span>
                     <div class="project-image" style="background-image: url(<%= projects[x].image_url %>)"></div>
                     <a><%= projects[x].name %></a>
-                    <span class="author"><%= projects[x].screen_name %></span>
+                    <img src=<%= projects[x].avatar %> alt=<%= projects[x].screen_name %> class="avatar"> <span class="author"><%= projects[x].screen_name %></span>
                 </div>
             <% } %>
         </div>
@@ -34,16 +35,18 @@
             for ( let i=0; i<projectCards.length; i++){
                 projectCards[i].style.display = "none";
             }
-            for ( let i=0; i<9; i++) {
-                document.querySelector(`.project-${(page-1)*10+i}`).style.display = "block";
-            }
+            if ( page < 5 ) {
+                for ( let i=0; i<9; i++) {
+                    document.querySelector(`.project-${(page-1)*10+i}`).style.display = "block";
+                }
+            } 
         }
 
         nextButton.addEventListener('click', (e) => {
             const currentPage = getQueryStringValue('page');
             if ( !currentPage ) {
                 page = 2;
-            } else {
+            } else  if ( page < 5) {
                 page++;
             }
             history.pushState({}, '', `/projects?page=${page}`);
