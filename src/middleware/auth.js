@@ -1,5 +1,6 @@
+// This script is not used anymore
+
 const axios = require('axios');
-const chalk = require('chalk');
 
 const baseURL = `https://hackaday.io`;
 const auth = async (req,res,next) => {
