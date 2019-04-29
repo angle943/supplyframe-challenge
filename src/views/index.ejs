@@ -11,7 +11,9 @@
             <% for (let x in projects) { %>
                 <div class="project-card project-<%= x %>">
                     <span class="tooltip"><%= projects[x].summary %></span>
-                    <div class="project-image" style="background-image: url(<%= projects[x].image_url %>)"></div>
+                    <a href="/projects/<%= projects[x].id %>">
+                        <div class="project-image" style="background-image: url(<%= projects[x].image_url %>)"></div>
+                    </a>
                     <a href="/projects/<%= projects[x].id %>"><%= projects[x].name %></a>
                     <img src=<%= projects[x].avatar %> alt=<%= projects[x].screen_name %> class="avatar"> <span class="author"><%= projects[x].screen_name %></span>
                 </div>
@@ -44,9 +46,15 @@
 
         nextButton.addEventListener('click', (e) => {
             const currentPage = getQueryStringValue('page');
-            if ( !currentPage ) {
+            if ( !currentPage || currentPage == 1 ) {
                 page = 2;
-            } else  if ( page < 5) {
+                prevButton.classList.remove('inactive-link');
+                nextButton.classList.remove('inactive-link');
+            } else if ( page == 3 ) {
+                prevButton.classList.remove('inactive-link');
+                nextButton.classList.add('inactive-link');
+                page++;
+            } else if ( page < 4 ) {
                 page++;
             }
             history.pushState({}, '', `/projects?page=${page}`);
@@ -54,7 +62,13 @@
 
         prevButton.addEventListener('click', (e) => {
             const currentPage = getQueryStringValue('page');
-            if ( currentPage && currentPage > 1 ) {
+            if ( currentPage == 2 ) {
+                prevButton.classList.add('inactive-link');
+                nextButton.classList.remove('inactive-link');
+                page--;
+            } else if ( currentPage <= 4 && currentPage > 2 ) {
+                prevButton.classList.remove('inactive-link');
+                nextButton.classList.remove('inactive-link');
                 page--;
             }
             history.pushState({}, '', `/projects?page=${page}`);
@@ -71,11 +85,20 @@
         
         const onInit = async () => {
             let currentPage = getQueryStringValue('page');
-            if ( !currentPage ){
+            if ( !currentPage || currentPage > 4 ){
                 currentPage = 1;
+                history.pushState({}, '', `/projects?page=${currentPage}`);
             }
             page = currentPage;
             displayCards(page);
+
+            if ( page == 1 ) {
+                prevButton.classList.add('inactive-link');
+                nextButton.classList.remove('inactive-link');
+            } else if ( page == 4 ) {
+                prevButton.classList.remove('inactive-link');
+                nextButton.classList.add('inactive-link');
+            }
         }
         onInit();
     </script>

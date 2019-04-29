@@ -22,7 +22,9 @@
             <% for (let x in relatedProjects) { %>
                 <div class="project-card project-<%= x %>">
                     <span class="tooltip"><%= relatedProjects[x].summary %></span>
-                    <div class="project-image" style="background-image: url(<%= relatedProjects[x].image_url %>)"></div>
+                    <a href="/projects/<%= relatedProjects[x].id %>">
+                        <div class="project-image" style="background-image: url(<%= relatedProjects[x].image_url %>)"></div>
+                    </a>
                     <a href="/projects/<%= relatedProjects[x].id %>"><%= relatedProjects[x].name %></a>
                 </div>
             <% } %>

@@ -34,7 +34,7 @@ router.get('/projects', async (req,res) => {
             }
         });
 
-        // implementing faker
+        // // implementing faker
         // let apiResponse = { data: { projects: [] } };
         // for ( let i=0; i<50; i++) {
         //     const newData = {
@@ -42,7 +42,7 @@ router.get('/projects', async (req,res) => {
         //         image_url: faker.image.image(),
         //         screen_name: faker.name.firstName(),
         //         avatar: faker.image.avatar(),
-        //         summary: faker.lorem.sentence()
+        //         summary: faker.lorem.paragraph(),
         //     }
         //     apiResponse.data.projects.push(newData);
         // }
